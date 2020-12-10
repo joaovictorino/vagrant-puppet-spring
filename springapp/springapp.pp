@@ -16,5 +16,5 @@ exec { "deploy-app":
 exec { 'run-app':
   require => Package['openjdk-11-jre'],
   path => "/usr/bin",
-  command => 'java -Dspring.profiles.active=mysql -jar /srv/*.jar &',
+  command => 'nohup java -Dspring.profiles.active=mysql -jar /srv/*.jar &',
 }
