@@ -14,10 +14,11 @@ Vagrant.configure("2") do |config|
     end
 
     mysqlserver.vm.provision "shell", inline: "apt-get update && apt-get install -y puppet"
+    mysqlserver.vm.provision "shell", inline: "mkdir -p /etc/puppet/modules && puppet module install puppetlabs/mysql"
 
     mysqlserver.vm.provision "puppet" do |puppet|
       puppet.manifests_path = "./mysql"
-      puppet.manifest_file = "mysql.pp"
+      puppet.manifest_file = "mysql_plugin.pp"
     end
   end
 
