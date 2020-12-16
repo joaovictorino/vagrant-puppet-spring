@@ -13,8 +13,8 @@ Vagrant.configure("2") do |config|
       vb.name = "mysqlserver_pp"
     end
 
-    mysqlserver.vm.provision "shell", inline: "apt-get update && apt-get install -y puppet"
-    mysqlserver.vm.provision "shell", inline: "mkdir -p /etc/puppet/modules && puppet module install puppetlabs/mysql"
+    mysqlserver.vm.provision "shell", inline: "apt-get update && apt-get install -y puppet=5.4.0-2ubuntu3"
+    mysqlserver.vm.provision "shell", inline: "mkdir -p /etc/puppet/modules && puppet module install puppetlabs/mysql --version 10.8.0"
 
     mysqlserver.vm.provision "puppet" do |puppet|
       puppet.manifests_path = "./mysql"
@@ -32,7 +32,7 @@ Vagrant.configure("2") do |config|
       vb.cpus = 2
     end
 
-    springapp.vm.provision "shell", inline: "apt-get update && apt-get install -y puppet"
+    springapp.vm.provision "shell", inline: "apt-get update && apt-get install -y puppet=5.4.0-2ubuntu3"
 
     springapp.vm.provision "puppet" do |puppet|
       puppet.manifests_path = "./springapp"
